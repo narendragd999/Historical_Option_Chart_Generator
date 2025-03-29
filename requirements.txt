@@ -1,0 +1,9 @@
+streamlit
+pandas
+requests
+plotly
+scipy
+cloudscraper
+aiohttp
+yfinance
+pandas-datareader
