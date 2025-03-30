@@ -38,7 +38,7 @@ PREDEFINED_EXPIRY_DATES = [
 PREDEFINED_INSTRUMENTS_TYPE = ["OPTSTK", "OPTIDX", "FUTIDX", "FUTSTK", "FUTIVX"]
 
 # Predefined durations (optional)
-PREDEFINED_DURATIONS = ["Custom", "1D", "1W", "1M", "3M"]  # Custom as default
+PREDEFINED_DURATIONS = ["Custom", "1D", "1W", "1M", "1.5M", "3M"]  # Custom as default
 
 def calculate_from_date(to_date, duration):
     """Calculate from_date based on the selected duration and to_date."""
@@ -48,6 +48,8 @@ def calculate_from_date(to_date, duration):
         return to_date - timedelta(weeks=1)
     elif duration == "1M":
         return to_date - timedelta(days=30)  # Approximate 1 month
+    elif duration == "1.5M":
+        return to_date - timedelta(days=45)  # Approximate 1.5 month
     elif duration == "3M":
         return to_date - timedelta(days=90)  # Approximate 3 months
     else:  # Custom
@@ -57,7 +59,7 @@ def fetch_nse_data(from_date, to_date, symbol, year, expiry_date, option_type, s
     from_date_str = from_date.strftime("%d-%m-%Y")
     to_date_str = to_date.strftime("%d-%m-%Y")
     expiry_date_str = expiry_date.strftime("%d-%b-%Y")
-    print(f"expiry_date---{expiry_date_str}")
+    #print(f"expiry_date---{expiry_date_str}")
     params = {
         "from": from_date_str,
         "to": to_date_str,
