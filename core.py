@@ -16,7 +16,7 @@ url = "https://www.nseindia.com/api/historical/foCPV"
 
 # Load ticker symbols from CSV
 try:
-    ticker_df = pd.read_csv("tickerS.csv")
+    ticker_df = pd.read_csv("tickers.csv")
     if "SYMBOL" not in ticker_df.columns:
         st.error("The 'tickerS.csv' file must contain a 'SYMBOL' column.")
         st.stop()
