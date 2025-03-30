@@ -56,14 +56,15 @@ def calculate_from_date(to_date, duration):
 def fetch_nse_data(from_date, to_date, symbol, year, expiry_date, option_type, strike_price, instrument_type):
     from_date_str = from_date.strftime("%d-%m-%Y")
     to_date_str = to_date.strftime("%d-%m-%Y")
-    
+    expiry_date_str = expiry_date.strftime("%d-%b-%Y")
+    print(f"expiry_date---{expiry_date_str}")
     params = {
         "from": from_date_str,
         "to": to_date_str,
         "instrumentType": instrument_type,
         "symbol": symbol,
         "year": str(year),
-        "expiryDate": expiry_date,
+        "expiryDate": expiry_date_str,
         "optionType": option_type,
         "strikePrice": str(strike_price)
     }   
@@ -189,8 +190,8 @@ def main():
         to_date = st.date_input("To Date *", value=datetime(2025, 3, 30), min_value=from_date + timedelta(days=1), format="DD-MM-YYYY")
     
     # Column 3: Last 3 filters
-    with col3:
-        expiry_date = st.selectbox("Expiry Date (DD-MMM-YYYY) *", options=PREDEFINED_EXPIRY_DATES, index=2)
+    with col3:        
+        expiry_date = st.date_input("Expiry Date (DD-MMM-YYYY) *", value=datetime(2024, 12, 30), format="DD-MM-YYYY")
         option_type = st.selectbox("Option Type *", options=["CE", "PE"], index=0)
         strike_price = st.number_input("Strike Price *", min_value=0)
     
