@@ -177,7 +177,7 @@ def main():
     with col1:
         symbol = st.selectbox("Stock Symbol *", options=STOCK_SYMBOLS, index=1)
         instrument_type = st.selectbox("Instrument Type *", options=PREDEFINED_INSTRUMENTS_TYPE, index=0)
-        year = st.number_input("Year *", min_value=2020, max_value=2030, value=2025)
+        year = st.number_input("Year *", min_value=1995, max_value=2050, value=2025)
     
     # Column 2: Next 3 filters
     with col2:        
@@ -185,15 +185,15 @@ def main():
         # From Date comes first to set the min_value for To Date
         calculated_from_date = calculate_from_date(datetime(2025, 3, 30), duration) if duration != "Custom" else None
         if duration != "Custom" and calculated_from_date is not None:
-            from_date = st.date_input("From Date *", value=calculated_from_date, format="DD-MM-YYYY", disabled=True)
+            from_date = st.date_input("From Date *", value=calculated_from_date, format="DD-MM-YYYY", disabled=True, min_value=datetime(2000, 1, 1))
         else:
-            from_date = st.date_input("From Date *", value=datetime(2024, 12, 30), format="DD-MM-YYYY")
+            from_date = st.date_input("From Date *", value=datetime(2024, 12, 30), format="DD-MM-YYYY", min_value=datetime(2000, 1, 1))
         # To Date must be after From Date
         to_date = st.date_input("To Date *", value=datetime(2025, 3, 30), min_value=from_date + timedelta(days=1), format="DD-MM-YYYY")
     
     # Column 3: Last 3 filters
     with col3:        
-        expiry_date = st.date_input("Expiry Date (DD-MMM-YYYY) *", value=datetime(2024, 12, 30), format="DD-MM-YYYY")
+        expiry_date = st.date_input("Expiry Date (DD-MMM-YYYY) *", value=datetime(2024, 12, 30), format="DD-MM-YYYY", min_value=datetime(2000, 1, 1))
         option_type = st.selectbox("Option Type *", options=["CE", "PE"], index=0)
         strike_price = st.number_input("Strike Price *", min_value=0)
     
